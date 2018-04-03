@@ -42,6 +42,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'database_cleaner'
   gem 'coveralls', require: false
+  gem 'shoulda-matchers'
+  gem 'factory_bot'
 end
 
 group :development do
