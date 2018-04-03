@@ -40,6 +40,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.7'
+  gem 'database_cleaner'
+  gem 'coveralls', require: false
 end
 
 group :development do

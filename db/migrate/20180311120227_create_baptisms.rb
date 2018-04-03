@@ -5,6 +5,6 @@ class CreateBaptisms < ActiveRecord::Migration[5.1]
       t.string "church_name"
       t.timestamps
     end
-    add_reference :baptisms, :congregation, foreign_key: true, nullable: true
+    add_reference :baptisms, :congregation, foreign_key: true
   end
 end
