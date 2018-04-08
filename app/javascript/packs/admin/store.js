@@ -1,16 +1,16 @@
-import { createStore, applyMiddleware } from "redux";
-import thunkMiddleware from "redux-thunk";
-import { createLogger } from "redux-logger";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 // import httpMiddleware from 'merchant/middleware/http';
-import { persistStore } from "redux-persist";
-import reducers from "./reducers";
+import { persistStore } from 'redux-persist';
+import reducers from './reducers';
 
 const loggerMiddleware = createLogger();
 
 const middlewares = [
   thunkMiddleware,
-  loggerMiddleware
+  loggerMiddleware,
   // httpMiddleware,
 ];
 

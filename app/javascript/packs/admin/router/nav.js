@@ -1,16 +1,16 @@
-import { LoginScreen } from "../screens/authentication";
+import { LoginScreen } from '../screens/authentication';
 
 // authentication
 const Authentications = {
   Login: {
-    path: "/account/login",
+    path: '/account/login',
     component: LoginScreen,
-    label: "Login"
-  }
+    label: 'Login',
+  },
 };
 
 const AuthenticationGroups = {
-  ...Authentications
+  ...Authentications,
 };
 
 export default AuthenticationGroups;

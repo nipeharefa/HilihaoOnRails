@@ -1,8 +1,8 @@
-import _ from "lodash";
-import React, { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
-import { Layout } from "antd";
-import AuthenticationNavigation from "../router/nav";
+import _ from 'lodash';
+import React, { Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Layout } from 'antd';
+import AuthenticationNavigation from '../router/nav';
 
 const { Footer } = Layout;
 
@@ -17,7 +17,7 @@ const Authentication = () => (
         {/* <Redirect to="/" /> */}
       </Switch>
     </div>
-    <Footer style={{ textAlign: "center" }}>Stocard Wallet &copy; 2018</Footer>
+    <Footer style={{ textAlign: 'center' }}>Stocard Wallet &copy; 2018</Footer>
   </Fragment>
 );
 
