@@ -1,15 +1,31 @@
 import React, { Fragment, Component } from 'react';
-import { Row, Col, Form } from 'antd';
+import PropTypes from 'prop-types';
+import { Row, Col, Form, Button } from 'antd';
 import InputText from '../../components/formItem/text';
+
+const FormItem = Form.Item;
 
 class LoginForm extends Component {
   handleFormSubmitted = (e) => {
-    if (e) {
-      return 1;
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.login(values);
+        // return true;
+      }
+    });
+  }
+  login = async (data) => {
+    const { userSignin } = this.props;
+    try {
+      const response = await userSignin(null, null, { auth: data });
+      console.log(response);
+    } catch (e) {
+      throw e;
     }
-    return e;
   }
   render() {
+    const { getFieldDecorator } = this.props.form;
     const columnConfig = {
       md: {
         span: 8,
@@ -20,25 +36,46 @@ class LoginForm extends Component {
       },
     };
 
-    const emailInputProps = {
+    const emailFieldConfiguration = {
+      getFieldDecorator,
+      name: 'email',
       input: {
-        placeholder: 'Alamat Email',
+        type: 'email',
+        placeholder: 'Email',
       },
+      rules: [
+        {
+          required: true,
+          message: 'Plase enter your email',
+        },
+      ],
     };
-
-    const passwordInputProps = {
+    const passwordFieldConfiguration = {
+      getFieldDecorator,
+      name: 'password',
       input: {
-        placeholder: 'Kata Sandi',
+        type: 'password',
+        placeholder: 'Your Password',
       },
+      rules: [
+        {
+          required: true,
+          message: 'Plase enter your password',
+        },
+      ],
     };
-
     return (
       <Fragment>
         <Row gutter={16}>
           <Col {...columnConfig}>
             <Form onSubmit={this.handleFormSubmitted}>
-              <InputText {...emailInputProps} />
-              <InputText {...passwordInputProps} />
+              <InputText {...emailFieldConfiguration} />
+              <InputText {...passwordFieldConfiguration} />
+              <FormItem>
+                <Button type="primary" htmlType="submit" className="login-form-button">
+                  Log in
+                </Button>
+              </FormItem>
             </Form>
           </Col>
         </Row>
@@ -46,6 +83,11 @@ class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  form: PropTypes.object.isRequired,
+  userSignin: PropTypes.func.isRequired,
+};
 
 const LoginFormWrapped = Form.create()(LoginForm);
 export default LoginFormWrapped;

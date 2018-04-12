@@ -1,10 +1,10 @@
-import { LoginScreen } from '../screens/authentication';
+import { Container } from '../screens/authentication';
 
 // authentication
 const Authentications = {
   Login: {
     path: '/account/login',
-    component: LoginScreen,
+    component: Container,
     label: 'Login',
   },
 };

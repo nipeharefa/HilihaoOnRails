@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import httpMiddleware from 'merchant/middleware/http';
 import { persistStore } from 'redux-persist';
+import httpMiddleware from './middleware/http';
 import reducers from './reducers';
 
 const loggerMiddleware = createLogger();
@@ -11,7 +11,7 @@ const loggerMiddleware = createLogger();
 const middlewares = [
   thunkMiddleware,
   loggerMiddleware,
-  // httpMiddleware,
+  httpMiddleware,
 ];
 
 const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
