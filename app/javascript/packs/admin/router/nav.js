@@ -1,4 +1,5 @@
 import { Container } from '../screens/authentication';
+import JemaatComponent from '../screens/congregtion';
 
 // authentication
 const Authentications = {
@@ -9,8 +10,17 @@ const Authentications = {
   },
 };
 
+const Jemaat = {
+  List: {
+    path: '/',
+    component: JemaatComponent,
+    label: 'Jemaat',
+  },
+};
+
 const AuthenticationGroups = {
   ...Authentications,
+  ...Jemaat,
 };
 
 export default AuthenticationGroups;
