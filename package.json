@@ -138,7 +138,9 @@
     },
     "settings": {
       "import/resolver": {
-        "webpack": {}
+        "webpack": {
+          "config": "./config/webpack/production.js"
+        }
       }
     }
   },

@@ -1,25 +1,31 @@
-const { environment } = require('@rails/webpacker')
-const webpack = require('webpack')
-const { join } = require('path')
+const { environment } = require('@rails/webpacker');
+const webpack = require('webpack');
+const { join, resolve } = require('path');
+
+const customeConfig = {
+  resolve: {
+    alias: {
+      '@': resolve('app/javascript/packs'),
+      '@admin': resolve('app/javascript/packs/admin'),
+    },
+  },
+};
 
 environment.plugins.append(
   'CommonsChunkVendor',
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    minChunks: (module) => {
-      // this assumes your vendor imports exist in the node_modules directory
-      return module.context && module.context.indexOf('node_modules') !== -1
-    }
+    minChunks: (module) => module.context && module.context.indexOf('node_modules') !== -1,
   })
-)
+);
 
 environment.plugins.append(
   'CommonsChunkManifest',
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest',
-    minChunks: Infinity
+    minChunks: Infinity,
   })
-)
+);
 
 environment.loaders.append(
   'babel',
@@ -32,24 +38,24 @@ environment.loaders.append(
         presets: ['env', 'react', 'stage-2'],
         babelrc: false,
         plugins: [
+          'transform-decorators-legacy',
+          'syntax-dynamic-import',
+          'transform-object-rest-spread',
+          [
+            'transform-class-properties',
+            { spec: true },
+          ],
           ['import', {
             libraryName: 'antd',
             style: 'css',
           }],
-          'transform-decorators-legacy',
-          "syntax-dynamic-import",
-          "transform-object-rest-spread",
-          [
-              "transform-class-properties",
-              {
-              "spec": true
-              }
-          ]
         ],
-        cacheDirectory: join('tmp/cache', 'babel-loader')
-      }
-    }]
+        cacheDirectory: join('tmp/cache', 'babel-loader'),
+      },
+    }],
   }
-)
+);
 
-module.exports = environment
+environment.config.merge(customeConfig);
+
+module.exports = environment;

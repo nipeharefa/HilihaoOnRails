@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
-import AuthenticationNavigation from '../router/nav';
 import { userIsNotAuthenticated } from '../middleware/auth';
+import AuthenticationNavigation from '../router/nav';
 
 const { Footer } = Layout;
 
